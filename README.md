@@ -58,6 +58,9 @@ Everything personal is in [`src/data/experience.ts`](src/data/experience.ts):
   letter (three paragraphs plus a sign-off) are picked at random when the scene
   opens, so the words are never the same twice. Add or edit entries freely — the
   more variants, the less often a letter repeats.
+- `letter.rerollLabel` — the label of the “read another letter” button that
+  sits at the foot of the open letter; tapping it writes a different letter in
+  the same envelope (the salutation and signature stay the same).
 - `footer` — the tiny closing line.
 
 The split inputs accept digits automatically. If you ever change the passcode to

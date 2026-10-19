@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { ArrowRight, Feather, Heart, Mail } from "lucide-react";
+import { ArrowRight, Feather, Heart, Mail, Shuffle } from "lucide-react";
 import { experience } from "../data/experience";
 import {
   CornerFlourish,
@@ -21,9 +21,13 @@ export function LetterScene({ onContinue }: { onContinue: () => void }) {
   const [opened, setOpened] = useState(false);
   const openTimer = useRef<number | null>(null);
   const letterRef = useRef<HTMLElement>(null);
-  const [variant] = useState(() => pickOne(letter.variants));
+  const [variantIndex, setVariantIndex] = useState(() =>
+    Math.floor(Math.random() * letter.variants.length),
+  );
   const [message] = useState(() => pickOne(letter.messages));
   const [envelopeName] = useState(() => pickOne(letter.envelopeNames));
+  const [status, setStatus] = useState("");
+  const variant = letter.variants[variantIndex];
 
   useEffect(() => {
     return () => {
@@ -46,6 +50,28 @@ export function LetterScene({ onContinue }: { onContinue: () => void }) {
       setOpening(false);
       setOpened(true);
     }, 680);
+  };
+
+  /** Writes a different letter in the same envelope. */
+  const handleReroll = () => {
+    const total = letter.variants.length;
+    if (total < 2) return;
+    setVariantIndex((current) => {
+      const offset = 1 + Math.floor(Math.random() * (total - 1));
+      return (current + offset) % total;
+    });
+    setStatus("A different letter is written now.");
+    window.requestAnimationFrame(() => {
+      const node = letterRef.current;
+      if (!node) return;
+      const rect = node.getBoundingClientRect();
+      if (rect.top < 96 || rect.bottom > window.innerHeight) {
+        window.scrollTo({
+          top: rect.top + window.scrollY - 96,
+          behavior: "smooth",
+        });
+      }
+    });
   };
 
   return (
@@ -131,19 +157,30 @@ export function LetterScene({ onContinue }: { onContinue: () => void }) {
 
                 <p className="love-letter__to">{letter.to}</p>
 
-                <div className="love-letter__body">
-                  {variant.paragraphs.map((paragraph, index) => (
-                    <p key={index}>{paragraph}</p>
-                  ))}
-                </div>
+                <AnimatePresence mode="wait" initial={false}>
+                  <motion.div
+                    key={variantIndex}
+                    className="love-letter__variant"
+                    initial={{ opacity: 0, y: 12 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+                  >
+                    <div className="love-letter__body">
+                      {variant.paragraphs.map((paragraph, index) => (
+                        <p key={index}>{paragraph}</p>
+                      ))}
+                    </div>
 
-                <div className="love-letter__signoff">
-                  <p>{variant.signoff}</p>
-                  <span className="love-letter__signature">
-                    {letter.signature}
-                    <Feather size={16} strokeWidth={1.2} aria-hidden="true" />
-                  </span>
-                </div>
+                    <div className="love-letter__signoff">
+                      <p>{variant.signoff}</p>
+                      <span className="love-letter__signature">
+                        {letter.signature}
+                        <Feather size={16} strokeWidth={1.2} aria-hidden="true" />
+                      </span>
+                    </div>
+                  </motion.div>
+                </AnimatePresence>
 
                 <div className="love-letter__divider" aria-hidden="true">
                   <LotusDivider />
@@ -152,6 +189,20 @@ export function LetterScene({ onContinue }: { onContinue: () => void }) {
                 <p className="love-letter__date" aria-hidden="true">
                   Thadingyut · under a full moon
                 </p>
+
+                <div className="love-letter__reroll">
+                  <button
+                    type="button"
+                    className="letter-reroll"
+                    onClick={handleReroll}
+                  >
+                    <Shuffle size={13} strokeWidth={1.6} aria-hidden="true" />
+                    {letter.rerollLabel}
+                  </button>
+                  <span className="sr-only" role="status">
+                    {status}
+                  </span>
+                </div>
               </article>
 
               <div className="letter-actions">

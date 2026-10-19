@@ -82,6 +82,7 @@ export const experience = {
       "Some things are easier to write than to say, so I wrote it down instead.",
     ],
     envelopeNames: ["For Ngal", "For Ngal, under this moon", "Only for you, Ngal"],
+    rerollLabel: "Read a different letter",
     variants: [
       {
         signoff: "Always, under the same moon,",
