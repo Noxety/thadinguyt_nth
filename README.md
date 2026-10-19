@@ -51,9 +51,13 @@ Everything personal is in [`src/data/experience.ts`](src/data/experience.ts):
 - `passcodeHint` — the clue shown under the boxes.
 - `intro`, `secret`, `festival`, `gifts`, `reveal`, `letter`, and `finale` —
   every heading, button label, note, and line of copy.
-- `letter.to`, `letter.paragraphs`, `letter.signoff`, and `letter.signature` —
-  the letter itself. It currently opens with “Ngal,” and is signed “Yours, Arca”;
-  edit both here.
+- `letter.to` and `letter.signature` — the letter opens with “Ngal,” and is
+  signed “Yours, Arca”.
+- `letter.messages`, `letter.envelopeNames`, and `letter.variants` — the letter
+  is written fresh every time: one teaser, one envelope address, and one whole
+  letter (three paragraphs plus a sign-off) are picked at random when the scene
+  opens, so the words are never the same twice. Add or edit entries freely — the
+  more variants, the less often a letter repeats.
 - `footer` — the tiny closing line.
 
 The split inputs accept digits automatically. If you ever change the passcode to
@@ -150,7 +154,7 @@ Before sharing the link, replace or confirm:
 - [ ] The passcode (`299999` by default)
 - [ ] Recipient name / “Ngal” wording and sender signature (“Yours, Arca”)
 - [ ] Intro and festival copy
-- [ ] Letter paragraphs and sign-off
+- [ ] Letter paragraphs and sign-off (the eight `letter.variants`)
 - [ ] The three gift names, teasers, and reveal messages
 - [ ] Any real gift, date, or claim instructions
 - [ ] Optional photos

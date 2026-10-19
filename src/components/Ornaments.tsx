@@ -18,7 +18,6 @@ export function OrnateButton({
 }: OrnateButtonProps) {
   return (
     <motion.button
-      whileHover={disabled ? undefined : { y: -2 }}
       whileTap={disabled ? undefined : { scale: 0.975 }}
       transition={{ type: "spring", stiffness: 380, damping: 28 }}
       disabled={disabled}

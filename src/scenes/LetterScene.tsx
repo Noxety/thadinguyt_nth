@@ -11,11 +11,19 @@ import {
 
 const letter = experience.letter;
 
+/** Picks one item at random — the letter is never written the same way twice. */
+function pickOne<T>(items: readonly T[]): T {
+  return items[Math.floor(Math.random() * items.length)];
+}
+
 export function LetterScene({ onContinue }: { onContinue: () => void }) {
   const [opening, setOpening] = useState(false);
   const [opened, setOpened] = useState(false);
   const openTimer = useRef<number | null>(null);
   const letterRef = useRef<HTMLElement>(null);
+  const [variant] = useState(() => pickOne(letter.variants));
+  const [message] = useState(() => pickOne(letter.messages));
+  const [envelopeName] = useState(() => pickOne(letter.envelopeNames));
 
   useEffect(() => {
     return () => {
@@ -58,14 +66,14 @@ export function LetterScene({ onContinue }: { onContinue: () => void }) {
               <h2 id="letter-heading" className="letter-title">
                 {letter.title}
               </h2>
-              <p className="letter-message">{letter.message}</p>
+              <p className="letter-message">{message}</p>
 
               <button
                 type="button"
                 className={`sealed-envelope ${opening ? "is-opening" : ""}`}
                 onClick={handleOpen}
                 disabled={opening}
-                aria-label={`Break the wax seal and open your letter. ${letter.envelopeName}.`}
+                aria-label={`Break the wax seal and open your letter. ${envelopeName}.`}
               >
                 <span className="envelope-wrap" aria-hidden="true">
                   <span className="envelope">
@@ -78,7 +86,7 @@ export function LetterScene({ onContinue }: { onContinue: () => void }) {
                     <span className="envelope__seal">
                       <Heart size={18} strokeWidth={1.5} />
                     </span>
-                    <span className="envelope__address">{letter.envelopeName}</span>
+                    <span className="envelope__address">{envelopeName}</span>
                     <span className="envelope__grain" />
                   </span>
                 </span>
@@ -124,13 +132,13 @@ export function LetterScene({ onContinue }: { onContinue: () => void }) {
                 <p className="love-letter__to">{letter.to}</p>
 
                 <div className="love-letter__body">
-                  {letter.paragraphs.map((paragraph, index) => (
+                  {variant.paragraphs.map((paragraph, index) => (
                     <p key={index}>{paragraph}</p>
                   ))}
                 </div>
 
                 <div className="love-letter__signoff">
-                  <p>{letter.signoff}</p>
+                  <p>{variant.signoff}</p>
                   <span className="love-letter__signature">
                     {letter.signature}
                     <Feather size={16} strokeWidth={1.2} aria-hidden="true" />
