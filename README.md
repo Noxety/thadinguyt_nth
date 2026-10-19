@@ -52,8 +52,8 @@ Everything personal is in [`src/data/experience.ts`](src/data/experience.ts):
 - `intro`, `secret`, `festival`, `gifts`, `reveal`, `letter`, and `finale` —
   every heading, button label, note, and line of copy.
 - `letter.to`, `letter.paragraphs`, `letter.signoff`, and `letter.signature` —
-  the letter itself. Replace the placeholder “My love,” and “Yours” with your
-  names or however you sign off.
+  the letter itself. It currently opens with “Ngal,” and is signed “Yours, Arca”;
+  edit both here.
 - `footer` — the tiny closing line.
 
 The split inputs accept digits automatically. If you ever change the passcode to
@@ -148,7 +148,7 @@ use server-side authentication or a private, unlisted link.
 Before sharing the link, replace or confirm:
 
 - [ ] The passcode (`299999` by default)
-- [ ] Recipient name / “My love” wording and sender signature
+- [ ] Recipient name / “Ngal” wording and sender signature (“Yours, Arca”)
 - [ ] Intro and festival copy
 - [ ] Letter paragraphs and sign-off
 - [ ] The three gift names, teasers, and reveal messages

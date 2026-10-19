@@ -69,14 +69,14 @@ export const experience = {
     envelopeName: "For you, always",
     button: "Break the seal",
     openedEyebrow: "A letter, written under the moon",
-    to: "My love,",
+    to: "Ngal,",
     paragraphs: [
       "If you're reading this, you found your way through every little light — and I hope this night feels as gentle as you make the world feel.",
       "I could fill a thousand lanterns with reasons, but they would all say the same thing: I am so glad it's you. Your laugh, your softness, the way ordinary days become something I look forward to.",
       "Keep this little piece of Thadingyut with you. Whenever the moon is full, remember that somewhere under it, there is someone who is endlessly grateful you exist.",
     ],
     signoff: "Always, under the same moon,",
-    signature: "Yours",
+    signature: "Yours, Arca",
     nextButton: "There's one last light…",
   },
 
