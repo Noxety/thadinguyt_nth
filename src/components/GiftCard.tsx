@@ -23,6 +23,7 @@ export function GiftCard({
       type="button"
       className="gift-card"
       data-theme={gift.theme}
+      data-gift-id={gift.id}
       data-selected={selected}
       data-dimmed={dimmed}
       data-opening={opening}

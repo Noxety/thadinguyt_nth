@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import type { ChangeEvent, ClipboardEvent, FormEvent, KeyboardEvent } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { LockKeyhole, Sparkles, Star, UnlockKeyhole } from "lucide-react";
+import { Eye, EyeOff, LockKeyhole, Sparkles, Star, UnlockKeyhole } from "lucide-react";
 import { experience } from "../data/experience";
 import { Eyebrow, OrnateButton } from "../components/Ornaments";
 
@@ -31,6 +31,7 @@ function GateCrest() {
 
 export function SecretScene({ onUnlock }: SecretSceneProps) {
   const [digits, setDigits] = useState<string[]>(emptyCode);
+  const [revealed, setRevealed] = useState(false);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState(false);
   const [shaking, setShaking] = useState(false);
@@ -187,6 +188,21 @@ export function SecretScene({ onUnlock }: SecretSceneProps) {
               }
               transition={{ duration: 0.65, delay: success ? 0.28 : 0 }}
             >
+              <button
+                type="button"
+                className="secret-reveal-toggle"
+                onClick={() => setRevealed((visible) => !visible)}
+                aria-label={revealed ? "Hide the passcode digits" : "Show the passcode digits"}
+                aria-pressed={revealed}
+                title={revealed ? "Hide the digits" : "Show the digits"}
+              >
+                {revealed ? (
+                  <EyeOff size={16} strokeWidth={1.6} aria-hidden="true" />
+                ) : (
+                  <Eye size={16} strokeWidth={1.6} aria-hidden="true" />
+                )}
+              </button>
+
               <span className="secret-lock" aria-hidden="true">
                 {success ? (
                   <UnlockKeyhole size={21} strokeWidth={1.5} />
@@ -207,7 +223,7 @@ export function SecretScene({ onUnlock }: SecretSceneProps) {
                 </p>
 
                 <div
-                  className={`secret-code ${shaking ? "is-shaking" : ""}`}
+                  className={`secret-code ${shaking ? "is-shaking" : ""} ${revealed ? "is-revealed" : ""}`}
                   role="group"
                   aria-labelledby="passcode-label"
                   aria-describedby={feedbackId}
@@ -219,7 +235,10 @@ export function SecretScene({ onUnlock }: SecretSceneProps) {
                         digitRefs.current[index] = element;
                       }}
                       className="secret-digit"
-                      type="text"
+                      type={revealed ? "text" : "password"}
+                      name={`passcode-digit-${index + 1}`}
+                      data-1p-ignore
+                      data-lpignore="true"
                       value={digit}
                       onChange={(event) => handleDigitChange(index, event)}
                       onKeyDown={(event) => handleKeyDown(index, event)}

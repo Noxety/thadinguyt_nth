@@ -45,6 +45,21 @@ export function GiftsScene({ onOpenGift, onChime }: GiftsSceneProps) {
     if (opening) return;
     setSelectedId(gift.id);
     onChime?.();
+    // On phones the action bar is docked to the bottom, so make sure the
+    // chosen box is never hidden underneath it.
+    window.requestAnimationFrame(() => {
+      const card = document.querySelector<HTMLElement>(
+        `[data-gift-id="${gift.id}"]`,
+      );
+      if (!card) return;
+      const rect = card.getBoundingClientRect();
+      const dockHeight = window.innerWidth <= 720 ? 168 : 24;
+      const hidden =
+        rect.top < 76 || rect.bottom > window.innerHeight - dockHeight;
+      if (hidden) {
+        card.scrollIntoView({ behavior: "smooth", block: "center" });
+      }
+    });
   };
 
   const handleOpen = () => {

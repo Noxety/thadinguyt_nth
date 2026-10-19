@@ -182,7 +182,7 @@ svg {
   top: max(12px, env(safe-area-inset-top));
   left: 50%;
   z-index: 100;
-  padding: 10px 18px;
+  padding: 13px 18px;
   border: 1px solid rgba(var(--gold-rgb), 0.5);
   border-radius: 999px;
   background: var(--midnight);
@@ -1299,6 +1299,31 @@ svg {
   color: var(--gold);
 }
 
+.secret-reveal-toggle {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: rgba(var(--ivory-rgb), 0.38);
+  transition: color 180ms ease, background-color 180ms ease;
+}
+.secret-reveal-toggle:hover {
+  background: rgba(var(--gold-rgb), 0.07);
+  color: var(--gold);
+}
+.secret-reveal-toggle[aria-pressed="true"] {
+  color: var(--gold);
+  background: rgba(var(--gold-rgb), 0.1);
+}
+
 .secret-title {
   margin-top: 15px;
   color: var(--ivory);
@@ -1359,6 +1384,7 @@ svg {
   text-align: center;
   caret-color: var(--gold);
   outline: none;
+  -webkit-text-security: disc;
   transition:
     border-color 200ms ease,
     box-shadow 200ms ease,
@@ -1383,6 +1409,9 @@ svg {
   background:
     linear-gradient(180deg, rgba(var(--gold-rgb), 0.08), transparent),
     rgba(5, 7, 14, 0.52);
+}
+.secret-code.is-revealed .secret-digit {
+  -webkit-text-security: none;
 }
 .secret-digit[aria-invalid="true"] {
   border-color: rgba(var(--rose-rgb), 0.55);
@@ -3417,7 +3446,7 @@ svg {
     min-height: 50px;
   }
   .gifts-layout--selected .gift-actions__buttons .text-button {
-    min-height: 38px;
+    min-height: 44px;
     font-size: 0.63rem;
   }
   .gifts-layout--selected .gift-actions__note {
@@ -3569,6 +3598,52 @@ svg {
   }
   .heart-constellation {
     width: clamp(170px, 52vw, 230px);
+  }
+}
+
+/* Short phones: tighten the gift reveal so its call to action stays on screen. */
+@media (max-width: 720px) and (max-height: 700px) {
+  .scene--reveal {
+    padding-top: calc(env(safe-area-inset-top) + 78px);
+    padding-bottom: calc(env(safe-area-inset-bottom) + 22px);
+  }
+  .reveal-artwork {
+    width: min(52vw, 190px);
+  }
+  .reveal-gift-name {
+    margin-top: 12px;
+  }
+  .reveal-title {
+    margin-top: 6px;
+    font-size: clamp(2.1rem, 8.6vw, 2.7rem);
+  }
+  .reveal-message {
+    margin-top: 11px;
+    line-height: 1.58;
+  }
+  .reveal-type-note {
+    margin-top: 12px;
+    padding: 6px 11px;
+  }
+  .reveal-divider {
+    margin-top: 14px;
+  }
+  .reveal-actions {
+    gap: 6px;
+    margin-top: 14px;
+  }
+}
+
+/* Very short phones (e.g. 320x568) keep the reveal call to action on screen. */
+@media (max-width: 360px) and (max-height: 600px) {
+  .scene--reveal {
+    padding-top: calc(env(safe-area-inset-top) + 74px);
+  }
+  .reveal-artwork {
+    width: min(47vw, 170px);
+  }
+  .reveal-title {
+    font-size: 2rem;
   }
 }
 
