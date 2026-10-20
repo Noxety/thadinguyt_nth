@@ -314,7 +314,9 @@ export function SecretScene({ onUnlock }: SecretSceneProps) {
                   animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
                   transition={{ delay: 0.65, duration: 0.9 }}
                 >
-                  {experience.secret.success}
+                  <span className="gate-success__plate">
+                    {experience.secret.success}
+                  </span>
                 </motion.p>
               )}
             </AnimatePresence>

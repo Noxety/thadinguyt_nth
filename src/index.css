@@ -1471,13 +1471,27 @@ svg {
   justify-content: center;
   width: 100%;
   padding: 24px;
-  color: var(--ivory);
   font-family: var(--font-display);
   font-size: clamp(1.6rem, 3.6vw, 2.3rem);
   font-style: italic;
   line-height: 1.35;
   text-align: center;
-  text-shadow: 0 0 36px rgba(var(--gold-rgb), 0.45);
+}
+.gate-success__plate {
+  display: inline-block;
+  max-width: min(100%, 470px);
+  padding: clamp(18px, 3vw, 26px) clamp(22px, 4vw, 34px);
+  border: 1px solid rgba(var(--gold-rgb), 0.34);
+  border-radius: 3px;
+  background:
+    linear-gradient(160deg, rgba(24, 19, 41, 0.93), rgba(8, 9, 18, 0.95));
+  box-shadow:
+    0 30px 80px rgba(0, 0, 0, 0.44),
+    inset 0 1px 0 rgba(var(--ivory-rgb), 0.06);
+  color: var(--ivory);
+  text-shadow: 0 0 26px rgba(var(--gold-rgb), 0.2);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
 
 .gate-stage--unlocked .gate-frame {
@@ -3304,8 +3318,12 @@ svg {
     width: 14px;
   }
   .gate-success {
-    width: 80%;
-    font-size: 1.55rem;
+    width: 100%;
+    padding: 20px;
+    font-size: clamp(1.35rem, 6vw, 1.6rem);
+  }
+  .gate-success__plate {
+    padding: 18px 20px;
   }
 
   .festival-title {

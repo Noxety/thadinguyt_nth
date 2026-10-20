@@ -14,42 +14,42 @@ export function SkyLantern({ className = "", style, muted = false }: LanternProp
 
   return (
     <div className={`sky-lantern ${className}`} style={style} aria-hidden="true">
-      <svg viewBox="0 0 80 126" fill="none">
+      <svg viewBox="0 0 80 80" fill="none">
         <defs>
-          <linearGradient id={bodyGradient} x1="24" y1="20" x2="58" y2="96" gradientUnits="userSpaceOnUse">
+          <linearGradient id={bodyGradient} x1="24" y1="16" x2="58" y2="64" gradientUnits="userSpaceOnUse">
             <stop stopColor="#FFE3A1" />
             <stop offset=".34" stopColor="#F3C46B" />
             <stop offset=".74" stopColor="#C78334" />
             <stop offset="1" stopColor="#8C4F1D" />
           </linearGradient>
-          <radialGradient id={flameGradient} cx="0" cy="0" r="1" gradientTransform="translate(40 96) rotate(90) scale(12 18)" gradientUnits="userSpaceOnUse">
+          <radialGradient id={flameGradient} cx="0" cy="0" r="1" gradientTransform="translate(40 61) rotate(90) scale(11 14)" gradientUnits="userSpaceOnUse">
             <stop stopColor="#FFFBEA" />
             <stop offset=".35" stopColor="#FFE49A" />
             <stop offset="1" stopColor="#F5A93F" stopOpacity="0" />
           </radialGradient>
         </defs>
 
-        <ellipse cx="40" cy="104" rx="24" ry="8" fill="#F5C96A" opacity={muted ? 0.08 : 0.2} />
+        <ellipse cx="40" cy="70" rx="26" ry="6.5" fill="#F5C96A" opacity={muted ? 0.08 : 0.2} />
         <path
-          d="M25 35C25 19.5 31 13 40 13s15 6.5 15 22l2.6 59.5c-11 5-24.2 5-35.2 0L25 35Z"
+          d="M26 13C30 11 50 11 54 13l9 11c1.6 1.8 2.4 4.4 2.4 7.4l.6 26.2c.2 4-2 7.2-5.8 8.6-12.4 4.6-28 4.6-40.4 0C16 64.8 13.8 61.6 14 57.6l.6-26.2c0-3 .8-5.6 2.4-7.4l9-11Z"
           fill={`url(#${bodyGradient})`}
           opacity={muted ? 0.36 : 0.88}
         />
         <path
-          d="M25 35C25 19.5 31 13 40 13s15 6.5 15 22l2.6 59.5c-11 5-24.2 5-35.2 0L25 35Z"
+          d="M26 13C30 11 50 11 54 13l9 11c1.6 1.8 2.4 4.4 2.4 7.4l.6 26.2c.2 4-2 7.2-5.8 8.6-12.4 4.6-28 4.6-40.4 0C16 64.8 13.8 61.6 14 57.6l.6-26.2c0-3 .8-5.6 2.4-7.4l9-11Z"
           stroke="#FFE9B5"
           strokeOpacity={muted ? 0.25 : 0.55}
           strokeWidth=".8"
         />
-        <path d="M31 24.5c2.2-6.6 5.1-9 9-9s6.8 2.4 9 9" stroke="#FFF3CF" strokeOpacity=".6" strokeWidth=".9" />
-        <path d="M26.6 48.5c8.8 3 18.1 3 26.8 0M27.7 64c8 2.6 16.6 2.6 24.6 0M28.7 79.2c7.4 2.2 15.2 2.2 22.6 0" stroke="#7F4719" strokeOpacity=".45" strokeWidth=".8" />
-        <path d="M33 34v56M47 34v56" stroke="#8E521E" strokeOpacity=".28" strokeWidth=".8" />
-        <ellipse cx="40" cy="92" rx="14.5" ry="4.5" fill="#5E3517" fillOpacity=".8" />
-        <ellipse cx="40" cy="93.5" rx="7.5" ry="10" fill={`url(#${flameGradient})`} opacity={muted ? 0.15 : 0.9} />
-        <ellipse cx="40" cy="95" rx="2.8" ry="5.4" fill="#FFF6D8" opacity={muted ? 0.15 : 0.9} />
-        <path d="M40 13V7M36.5 8.5 40 5l3.5 3.5" stroke="#F5C96A" strokeOpacity=".5" strokeWidth=".8" />
-        <circle cx="56" cy="20" r=".9" fill="#FFF0C2" fillOpacity=".6" />
-        <circle cx="20" cy="46" r=".65" fill="#FFF0C2" fillOpacity=".4" />
+        <path d="M28 22c3-7.4 6.6-9.8 12-9.8s9 2.4 12 9.8" stroke="#FFF3CF" strokeOpacity=".6" strokeWidth=".9" />
+        <path d="M16.6 32c10.6 3.2 36.2 3.2 46.8 0M15.8 44c10.8 3 37.6 3 48.4 0M15.2 55c11 2.6 38.6 2.6 49.6 0" stroke="#7F4719" strokeOpacity=".45" strokeWidth=".8" />
+        <path d="M30 24v34M50 24v34" stroke="#8E521E" strokeOpacity=".28" strokeWidth=".8" />
+        <ellipse cx="40" cy="59.5" rx="17" ry="4.4" fill="#5E3517" fillOpacity=".8" />
+        <ellipse cx="40" cy="61" rx="8" ry="9.6" fill={`url(#${flameGradient})`} opacity={muted ? 0.15 : 0.9} />
+        <ellipse cx="40" cy="62.4" rx="3" ry="5.2" fill="#FFF6D8" opacity={muted ? 0.15 : 0.9} />
+        <path d="M40 12V7M36.5 8.5 40 5l3.5 3.5" stroke="#F5C96A" strokeOpacity=".5" strokeWidth=".8" />
+        <circle cx="60" cy="22" r=".9" fill="#FFF0C2" fillOpacity=".6" />
+        <circle cx="18" cy="42" r=".65" fill="#FFF0C2" fillOpacity=".4" />
       </svg>
     </div>
   );
